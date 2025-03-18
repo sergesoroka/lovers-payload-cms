@@ -17,7 +17,7 @@ export const Video: CollectionConfig = {
       required: true,
     },
     {
-      name: 'video link',
+      name: 'link',
       type: 'text',
       required: true,
     },
