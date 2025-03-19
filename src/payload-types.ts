@@ -144,6 +144,7 @@ export interface Work {
   name: string;
   client: string;
   link: string;
+  category: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -285,6 +286,7 @@ export interface WorksSelect<T extends boolean = true> {
   name?: T;
   client?: T;
   link?: T;
+  category?: T;
   updatedAt?: T;
   createdAt?: T;
 }

@@ -24,5 +24,10 @@ export const Works: CollectionConfig = {
       type: 'text',
       required: true,
     },
+    {
+      name: 'category',
+      type: 'text',
+      required: true,
+    },
   ],
 }

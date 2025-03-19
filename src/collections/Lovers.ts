@@ -3,6 +3,7 @@ import { lexicalEditor } from '@payloadcms/richtext-lexical'
 
 export const Lovers: CollectionConfig = {
   slug: 'lovers',
+  access: { read: () => true },
   fields: [
     {
       name: 'content',
