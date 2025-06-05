@@ -9,9 +9,9 @@ import sharp from 'sharp'
 
 import { Users } from './collections/Users'
 import { Works } from './collections/Works'
-import { Lovers } from './collections/Lovers'
 import { Social } from './collections/Social'
 import { Contacts } from './collections/Contacts'
+import { About } from './collections/About'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -23,7 +23,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Works, Lovers, Social, Contacts],
+  collections: [Users, Works, Social, Contacts, About],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
