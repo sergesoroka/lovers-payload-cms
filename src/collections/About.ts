@@ -15,5 +15,4 @@ export const About: CollectionConfig = {
       required: true,
     },
   ],
-  upload: true,
 }
