@@ -68,9 +68,9 @@ export interface Config {
   collections: {
     users: User;
     works: Work;
-    lovers: Lover;
     social: Social;
     contacts: Contact;
+    people: Person;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -79,9 +79,9 @@ export interface Config {
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     works: WorksSelect<false> | WorksSelect<true>;
-    lovers: LoversSelect<false> | LoversSelect<true>;
     social: SocialSelect<false> | SocialSelect<true>;
     contacts: ContactsSelect<false> | ContactsSelect<true>;
+    people: PeopleSelect<false> | PeopleSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -150,30 +150,6 @@ export interface Work {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "lovers".
- */
-export interface Lover {
-  id: number;
-  content?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "social".
  */
 export interface Social {
@@ -196,6 +172,17 @@ export interface Contact {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "people".
+ */
+export interface Person {
+  id: number;
+  name: string;
+  contact: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -210,16 +197,16 @@ export interface PayloadLockedDocument {
         value: number | Work;
       } | null)
     | ({
-        relationTo: 'lovers';
-        value: number | Lover;
-      } | null)
-    | ({
         relationTo: 'social';
         value: number | Social;
       } | null)
     | ({
         relationTo: 'contacts';
         value: number | Contact;
+      } | null)
+    | ({
+        relationTo: 'people';
+        value: number | Person;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -292,15 +279,6 @@ export interface WorksSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "lovers_select".
- */
-export interface LoversSelect<T extends boolean = true> {
-  content?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "social_select".
  */
 export interface SocialSelect<T extends boolean = true> {
@@ -314,6 +292,16 @@ export interface SocialSelect<T extends boolean = true> {
  * via the `definition` "contacts_select".
  */
 export interface ContactsSelect<T extends boolean = true> {
+  name?: T;
+  contact?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "people_select".
+ */
+export interface PeopleSelect<T extends boolean = true> {
   name?: T;
   contact?: T;
   updatedAt?: T;
