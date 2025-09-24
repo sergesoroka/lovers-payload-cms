@@ -71,6 +71,7 @@ export interface Config {
     social: Social;
     contacts: Contact;
     people: Person;
+    talents: Talent;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -82,6 +83,7 @@ export interface Config {
     social: SocialSelect<false> | SocialSelect<true>;
     contacts: ContactsSelect<false> | ContactsSelect<true>;
     people: PeopleSelect<false> | PeopleSelect<true>;
+    talents: TalentsSelect<false> | TalentsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -183,6 +185,17 @@ export interface Person {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "talents".
+ */
+export interface Talent {
+  id: number;
+  name: string;
+  position: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -207,6 +220,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'people';
         value: number | Person;
+      } | null)
+    | ({
+        relationTo: 'talents';
+        value: number | Talent;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -304,6 +321,16 @@ export interface ContactsSelect<T extends boolean = true> {
 export interface PeopleSelect<T extends boolean = true> {
   name?: T;
   contact?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "talents_select".
+ */
+export interface TalentsSelect<T extends boolean = true> {
+  name?: T;
+  position?: T;
   updatedAt?: T;
   createdAt?: T;
 }
